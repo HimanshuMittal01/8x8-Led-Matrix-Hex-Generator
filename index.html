@@ -1,0 +1,306 @@
+<html>
+<head><title>Try virtual 8x8 LED Matrix</title>
+<style>
+	body {
+		<!--background: linear-gradient(135deg, rgba(183,222,237,1) 0%, rgba(113,206,239,1) 50%, rgba(33,180,226,1) 51%, rgba(183,222,237,1) 100%) center no-repeat;-->
+		background: #FFFFFF;
+		background-attachment:fixed;
+		background-size: cover;
+	}
+	.LED_Decoder{
+		text-align: center;
+	}
+	
+	.Matrix {
+		border: 1px solid #de3344;
+		margin: 20px auto;
+		display: table;
+	}
+	
+	.Cell {
+		height: 45px;
+		width: 45px;
+		border: 1px solid #333;
+		border-radius: 10px;		
+		margin: 2px;
+		background: #cccccc;
+		display: inline-block;
+	}
+	.Row {
+		display: table-row;
+	}
+	.hexa_container{
+		border: 1px solid black;
+		height: 40px;
+		width: 700px;
+		margin: auto;
+		font-size: 24px;
+		padding:0px;
+		text-align: center;
+	}
+	.hexa_container p{
+		margin:8px auto;
+		font-family: verdana;
+		font-size: 16px;
+	}
+
+	.Cell:hover{
+		background: #FFAB91;
+	}
+	
+	<!--Tooltop for selecting copied text-->
+	.LED_Decoder .tooltip {
+		position: relative;
+		display: inline-block;
+	}
+
+	.LED_Decoder .tooltip .tooltiptext {
+		visibility: hidden;
+		width: 140px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px;
+		position: absolute;
+		z-index: 1;
+		bottom: 150%;
+		left: 50%;
+		margin-left: -75px;
+		opacity: 0;
+		transition: opacity 0.3s;
+	}
+
+	.LED_Decoder .tooltip .tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #555 transparent transparent transparent;
+	}
+
+	.tooltip:hover .tooltiptext {
+		visibility: visible;
+		opacity: 1;
+	}
+	
+	.ripple {
+	  background-position: center;
+	  transition: background 0.8s;
+	}
+	.ripple:hover {
+	  background: #FF9100 radial-gradient(circle, transparent 1%, #FB8C00 1%) center/15000%;
+	}
+	.ripple:active {
+	  background-color: #FF6D00;
+	  background-size: 100%;
+	  transition: background 0s;
+	}
+
+	button {
+	  border: none;
+	  border-radius: 2px;
+	  padding: 12px 18px;
+	  font-size: 16px;
+	  font-family: Verdana, Geneva, sans-serif;
+	  text-transform: uppercase;
+	  cursor: pointer;
+	  color: white;
+	  background-color: #FF6D00;
+	  box-shadow: 0 0 4px #999;
+	  outline: none;
+	  margin: 10px 5px;;
+	}
+
+</style>
+</head>
+<body>
+	<div class="LED_Decoder">
+		<div class="Matrix">
+			<div class="Row">
+				<td><div class="Cell" id="R1C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R1C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R2C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R2C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R3C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R3C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R4C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R4C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R5C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R5C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R6C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R6C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R7C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R7C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+			<div class="Row">
+				<td><div class="Cell" id="R8C1" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C2" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C3" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C4" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C5" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C6" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C7" onclick="change_color(this.id)" switch-state="0"></div></td>
+				<td><div class="Cell" id="R8C8" onclick="change_color(this.id)" switch-state="0"></div></td>
+			</div>
+		</div>
+		<button type="button" class="ripple" id="calbutton" onclick="generateHexa()">Get Hexadecimal values</button>
+		<div class="tooltip" style="display:inline">
+			<button type="button" class="ripple" id="copybutton" onclick="copySnippet()" onmouseout="toolTipHide()">
+				<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+				Copy Code Snippet
+			</button>
+		</div>
+		<button type="button" class="ripple" id="resetbutton" onclick="reset()">Clear</button>
+		<div class="hexa_container"><p id="hexa_text"></p></div>
+	</div>
+	
+	<script type="text/javascript">
+		var matrix = new Array(8);
+		for (var i = 0; i < matrix.length; i++) {
+			var columns = new Array(8);
+			for (var j = 0; j < columns.length; j++) {
+				columns[j] = "0";
+			}
+			matrix[i] = columns;
+		}
+		var zeroMatrix = matrix.map(function(arr) {
+			return arr.slice();
+		});
+		
+		function change_color(clicked_id){
+			var cell = document.getElementById(clicked_id);
+			var state = cell.getAttribute("switch-state");
+			var column = clicked_id.substr(3,3);
+			var row = clicked_id.substr(1,1);
+			
+			if (state=="0"){
+				cell.style.backgroundColor = "#F4511E";
+				cell.setAttribute("switch-state", "1");
+				state="1";
+			}
+			else{
+				cell.style.backgroundColor = "#cccccc";
+				cell.setAttribute("switch-state", "0");
+				state="0";
+			}
+			setMatrix(row, column, state);
+		}
+		function setMatrix(row, col, state){
+			matrix[row-1][col-1] = state;
+		}
+		function cal_hexa(binary_str){
+			return parseInt(binary_str, 2).toString(16).toUpperCase();
+		}
+		function generateHexa(){
+			var binary_row;
+			
+			document.getElementById("hexa_text").innerHTML = "";
+			for (var i = 0; i < matrix.length; i++) {
+				binary_row = matrix[i].join("");
+				if (i==0){
+					document.getElementById("hexa_text").innerHTML += "byte pattern[8]={0x"+cal_hexa(binary_row) + ", ";
+				}
+				
+				else if(i!= matrix.length-1){
+					document.getElementById("hexa_text").innerHTML += "0x"+cal_hexa(binary_row) + ", ";
+				}
+				
+				else{
+					document.getElementById("hexa_text").innerHTML += "0x"+cal_hexa(binary_row) + " };";
+				}
+			}
+		}
+		function reset(){
+			matrix = zeroMatrix.map(function(arr) {
+				return arr.slice();
+			});
+			var rowMark = "R";
+			var colMark = "C";
+			for (var i = 0; i < matrix.length; i++) {
+				for (var j = 0; j < matrix[i].length; j++) {
+					id = rowMark+(i+1).toString()+colMark+(j+1).toString();
+					document.getElementById(id).setAttribute("switch-state", "0");
+					document.getElementById(id).style.backgroundColor = "#cccccc";
+				}
+			}
+			document.getElementById("hexa_text").innerHTML = "";
+		}
+		function copySnippet() {
+			var copyText = document.getElementById("hexa_text").innerHTML;
+			const el = document.createElement('textarea');
+			el.value = copyText;
+			document.body.appendChild(el);
+			el.select();
+			document.execCommand('copy');
+			document.body.removeChild(el);
+			
+			//Enabling tool tip after copying/pressing button: Copied
+			var tooltip = document.getElementById("myTooltip");
+			tooltip.innerHTML = "Copied";
+		}
+		//To show that tooltip copies: Copy to clipboard
+		function toolTipHide(){
+			var tooltip = document.getElementById("myTooltip");
+			tooltip.innerHTML = "Copy to clipboard";
+		}
+	</script>
+</body>
+</html>
